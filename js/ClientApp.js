@@ -1,24 +1,22 @@
 import React from 'react'
-import ReactDOM from 'react-dom'
-import MyTitle from './MyTitle'
+import { render } from 'react-dom'
+// instead of
+// import ReactDOM from 'react-dom'
+import '../public/normalize.css'
+import '../public/style.css'
 
-var div = React.DOM.div
-
-// Factories
-var MyTitleFactory = React.createFactory(MyTitle)
-
-// parent passes on properties to children to display
-var MyFirstComponent = React.createClass({
-  render: function () {
-    return (
-    div(null,
-      MyTitleFactory({title: 'props are the best', color: 'peru', fontSize: '60'}),
-      MyTitleFactory({title: 'props are the second best', color: 'mediumaquamarine'}),
-      MyTitleFactory({title: 'props are the third best', color: 'tomato'}),
-      MyTitleFactory({title: 'props are the fourth best', color: 'blanchedalmond'})
-    )
+const App = React.createClass({
+  render () {
+    return(
+      <div className='app'>
+        <div className='landing'>
+          <h1>React-Netflix</h1>
+          <input type='text' placeholder='Search' />
+          <a>or Browse All</a>
+        </div>
+      </div>
     )
   }
 })
 
-ReactDOM.render(React.createElement(MyFirstComponent), document.getElementById('app'))
+render(<App />, document.getElementById('app'))
