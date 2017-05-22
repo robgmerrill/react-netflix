@@ -11,6 +11,9 @@ module.exports = {
     path: path.join(__dirname, '/public'),
     filename: 'bundle.js'
   },
+  devServer: {
+    publicPath: '/public/'
+  },
   resolve: {
     extensions: ['.js', '.json']
   },
@@ -22,21 +25,27 @@ module.exports = {
   module: {
     rules: [
       {
-      test: /\.js$/,
-      loader: 'babel-loader'
-  },
-  {
-    test: /\.css$/,
-    use: [
-      'style-loader',
+        enforce: 'pre',
+        test: /\.js$/,
+        loader: 'eslint-loader',
+        exclude: /node_modules/
+      },
       {
-        loader: 'css-loader',
-        options: {
-          url: false
-        }
+        test: /\.js$/,
+        loader: 'babel-loader'
+      },
+      {
+        test: /\.css$/,
+        use: [
+          'style-loader',
+          {
+            loader: 'css-loader',
+            options: {
+              url: false
+            }
+          }
+        ]
       }
-    ]
-  }
     ]
   }
 }
